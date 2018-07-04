@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api:
+    build: ./api
+    command: fresh
+    volumes:
+      - ./api:/go/src/api
+    ports:
+      - 8080:8080
+
+  web:
+    build: ./web
+    volumes:
+      - ./web/src:/usr/local/apache2/htdocs/
+    ports:
+      - 80:80
+    depends_on:
+      - api
