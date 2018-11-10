@@ -8,12 +8,9 @@ services:
       - ./api:/go/src/api
     ports:
       - 8080:8080
-
-  web:
-    build: ./web
-    volumes:
-      - ./web/src:/usr/local/apache2/htdocs/
-    ports:
-      - 80:80
     depends_on:
-      - api
+      - redis
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
